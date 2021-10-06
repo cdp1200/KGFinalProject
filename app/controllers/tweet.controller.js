@@ -3,19 +3,19 @@ const Tweet = db.tweets;
 
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.title) {
+    if (!req.body.description) {
       res.status(400).send({ message: "Content can not be empty!" });
       return;
     }
   
     // Create a Tweet
     const tweet = new Tweet({
-      title: req.body.title,
+      image: req.body.image,
       description: req.body.description,
       published: req.body.published ? req.body.published : false
     });
   
-    // Save Tutorial in the database
+    // Save Tweet in the database
     tweet
       .save(tweet)
       .then(data => {
