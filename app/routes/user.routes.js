@@ -6,7 +6,7 @@ module.exports = app => {
     // Create a new Tweet
     router.post("/", users.createUser);
   
-    // Retrieve User by email
+    // Retrieve User by email and check credentials
     router.get("/", users.loginUser);
   
     // Create a new Tweet
