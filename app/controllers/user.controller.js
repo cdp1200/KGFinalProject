@@ -10,8 +10,6 @@ exports.createUser = (req, res) => {
     }
 
     let body = req.body;
-    console.log(body)
-    console.log(typeof +process.env.DB_SALT)
 
     // Hash password 
     bcrypt.hash(body.password, +process.env.DB_SALT, (err, hash) => {
@@ -40,7 +38,8 @@ exports.createUser = (req, res) => {
 }
 
 exports.loginUser = (req, res) => {
-    User.findOne({username: req.body.username}, function (err, user) {
+    console.log(req.body)
+    User.findOne({email: req.body.email}, function (err, user) {
         console.log('This is my login user ', user);
         bcrypt.compare(req.body.password, user.password, (err, response) => {
             console.log(response)
