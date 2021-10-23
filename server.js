@@ -8,7 +8,7 @@ const app = express();
 require('dotenv').config()
 
 var corsOptions = {
-  origin: "https://fast-sierra-07771.herokuapp.com/"
+  origin: "https://fast-sierra-07771.herokuapp.com"
 };
 
 app.use(cors(corsOptions));
@@ -45,10 +45,11 @@ require("./app/routes/user.routes")(app);
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 8000;
+  port = 8080;
 }
-app.listen(port);
-
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
+});
 
 // const PORT = process.env.PORT || 8080;
 // app.listen(PORT, () => {
