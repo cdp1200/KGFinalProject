@@ -37,15 +37,21 @@ exports.createUser = (req, res) => {
     })
 }
 
-exports.loginUser = (req, res) => {
-    console.log(req.body)
-    User.findOne({email: req.body.email}, function (err, user) {
-        console.log('This is my login user ', user);
-        bcrypt.compare(req.body.password, user.password, (err, response) => {
-            console.log(response)
-            if(response) {
-                res.status(200).send({ message: "Login credentials validated" });
-            }
-        })
-    });
+exports.loginUser =  (req, res) => {
+    
+    console.log('this is the data from client', req.body)
+    if (!req.body.email) {
+        res.status(400).send({ message: "Content can not be empty!" });
+        return;
+    }
+    
+         User.findOne({email: req.body.email}, function (err, user) {
+            console.log('This is my login user ', user);
+            bcrypt.compare(req.body.password, user.password, (err, response) => {
+                console.log(response)
+                if(response) {
+                    res.status(200).send({ message: "Login credentials validated" });
+                }
+            })
+        });
 }

@@ -8,7 +8,7 @@ const app = express();
 require('dotenv').config()
 
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "https://fast-sierra-07771.herokuapp.com/"
 };
 
 app.use(cors(corsOptions));
@@ -42,7 +42,15 @@ require("./app/routes/tweet.routes")(app);
 require("./app/routes/user.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port);
+
+
+// const PORT = process.env.PORT || 8080;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}.`);
+// });
